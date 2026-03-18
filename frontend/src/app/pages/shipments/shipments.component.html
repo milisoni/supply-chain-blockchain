@@ -1,0 +1,51 @@
+<h1 class="page-title">Shipments</h1>
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" [(ngModel)]="myOnly" (change)="toggleMyOnly()" id="myOnly">
+    <label class="form-check-label" for="myOnly">My shipments only</label>
+  </div>
+  <a routerLink="/shipments/add" class="btn btn-primary">Add Shipment</a>
+</div>
+<div class="card">
+  <div class="card-body">
+    @if (loading) {
+      <p class="text-muted">Loading...</p>
+    } @else if (list.length === 0) {
+      <p class="text-muted">No shipments found.</p>
+    } @else {
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Product ID</th>
+              <th>Quantity</th>
+              <th>Destination</th>
+              <th>Status</th>
+              <th>Blockchain ID</th>
+              <th>Created</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (s of list; track s.id) {
+              <tr>
+                <td>{{ s.productId }}</td>
+                <td>{{ s.quantity }}</td>
+                <td>{{ s.destination }}</td>
+                <td><span class="badge" [ngClass]="statusClass(s.status)">{{ s.status }}</span></td>
+                <td>
+                  <div class="blockchain-id-cell">
+                    <code class="small blockchain-id-text" [title]="s.blockchainShipmentId">{{ s.blockchainShipmentId }}</code>
+                    <button class="btn btn-copy" (click)="copy(s.blockchainShipmentId)" [title]="'Copy full ID'">
+                      {{ copiedId === s.blockchainShipmentId ? '✓ Copied' : 'Copy' }}
+                    </button>
+                  </div>
+                </td>
+                <td>{{ s.createdAt | date:'short' }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </div>
+</div>

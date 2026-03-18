@@ -1,0 +1,19 @@
+{
+  "name": "supply-chain-blockchain",
+  "version": "1.0.0",
+  "description": "Supply chain and payment smart contracts",
+  "scripts": {
+    "compile": "truffle compile",
+    "migrate": "truffle migrate",
+    "migrate:ganache": "truffle migrate --network ganache",
+    "test": "truffle test",
+    "console": "truffle console"
+  },
+  "devDependencies": {
+    "truffle": "^5.11.5",
+    "truffle-contract-size": "^2.0.1"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}

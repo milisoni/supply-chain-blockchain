@@ -1,0 +1,33 @@
+<h1 class="page-title">Admin overview</h1>
+<div class="row g-3 mb-4">
+  @if (loading) {
+    <p class="text-muted">Loading...</p>
+  } @else if (overview) {
+    <div class="col-md-3">
+      <div class="card p-3">
+        <h5 class="text-primary">Users</h5>
+        <p class="mb-0 display-6">{{ overview.usersCount }}</p>
+        <a routerLink="/admin/users" class="btn btn-sm btn-outline-primary mt-2">Manage</a>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card p-3">
+        <h5 class="text-primary">Shipments</h5>
+        <p class="mb-0 display-6">{{ overview.shipmentsCount }}</p>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card p-3">
+        <h5 class="text-primary">Transactions</h5>
+        <p class="mb-0 display-6">{{ overview.transactionsCount }}</p>
+        <a routerLink="/transactions" class="btn btn-sm btn-outline-primary mt-2">View</a>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card p-3">
+        <h5 class="text-primary">Payments</h5>
+        <p class="mb-0 display-6">{{ overview.paymentsCount }}</p>
+      </div>
+    </div>
+  }
+</div>

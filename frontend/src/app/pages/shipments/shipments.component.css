@@ -1,0 +1,43 @@
+.blockchain-id-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.blockchain-id-text {
+  display: block;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #93c5fd;
+  font-size: 0.75rem;
+  cursor: text;
+  user-select: all;
+}
+
+.blockchain-id-cell:hover .blockchain-id-text {
+  max-width: none;
+  white-space: normal;
+  word-break: break-all;
+}
+
+.btn-copy {
+  flex-shrink: 0;
+  padding: 0.15rem 0.55rem;
+  font-size: 0.7rem;
+  border-radius: 6px;
+  background: #1e293b;
+  color: #93c5fd;
+  border: 1px solid #334155;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btn-copy:hover {
+  background: #0d6efd;
+  color: #fff;
+  border-color: #0d6efd;
+}

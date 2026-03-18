@@ -1,0 +1,32 @@
+<h1 class="page-title">Track Shipment</h1>
+<div class="card col-lg-6 mb-4">
+  <div class="card-body">
+    <p class="text-muted small">Enter the blockchain shipment ID (hex) to see current status.</p>
+    @if (error) {
+      <div class="alert alert-danger">{{ error }}</div>
+    }
+    <div class="input-group">
+      <input type="text" class="form-control" [(ngModel)]="blockchainId" name="blockchainId" placeholder="0x...">
+      <button class="btn btn-primary" type="button" (click)="search()" [disabled]="loading">
+        {{ loading ? 'Searching...' : 'Track' }}
+      </button>
+    </div>
+  </div>
+</div>
+@if (result) {
+  <div class="card col-lg-6">
+    <div class="card-header">Shipment details</div>
+    <div class="card-body">
+      <table class="table table-sm">
+        <tr><th>Blockchain ID</th><td><code class="small">{{ result.blockchainShipmentId }}</code></td></tr>
+        <tr><th>Product ID</th><td>{{ result.productId }}</td></tr>
+        <tr><th>Quantity</th><td>{{ result.quantity }}</td></tr>
+        <tr><th>Destination</th><td>{{ result.destination }}</td></tr>
+        <tr><th>Status</th><td><span class="badge" [ngClass]="statusClass(result.status)">{{ result.status }}</span></td></tr>
+        @if (result.transactionHash) {
+          <tr><th>Transaction</th><td><code class="small">{{ result.transactionHash }}</code></td></tr>
+        }
+      </table>
+    </div>
+  </div>
+}

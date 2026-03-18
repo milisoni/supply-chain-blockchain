@@ -1,0 +1,42 @@
+<h1 class="page-title">Manage users</h1>
+@if (error) { <div class="alert alert-danger mb-3">{{ error }}</div> }
+@if (success) { <div class="alert alert-success mb-3">{{ success }}</div> }
+<div class="card">
+  <div class="card-body">
+    @if (loading) {
+      <p class="text-muted">Loading...</p>
+    } @else {
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr><th>Name</th><th>Email</th><th>Role</th><th>Blockchain address</th><th>Active</th><th>Actions</th></tr>
+          </thead>
+          <tbody>
+            @for (u of list; track u.id) {
+              <tr>
+                @if (editingId === u.id) {
+                  <td><input class="form-control form-control-sm" [(ngModel)]="editName" /></td>
+                  <td>{{ u.email }}</td>
+                  <td>{{ u.role }}</td>
+                  <td><input class="form-control form-control-sm" [(ngModel)]="editAddress" placeholder="0x..." /></td>
+                  <td><input type="checkbox" class="form-check-input" [(ngModel)]="editActive" /></td>
+                  <td>
+                    <button class="btn btn-sm btn-success me-1" (click)="save()">Save</button>
+                    <button class="btn btn-sm btn-secondary" (click)="cancelEdit()">Cancel</button>
+                  </td>
+                } @else {
+                  <td>{{ u.name }}</td>
+                  <td>{{ u.email }}</td>
+                  <td><span class="badge bg-secondary">{{ u.role }}</span></td>
+                  <td><code class="small">{{ u.blockchainAddress || '-' }}</code></td>
+                  <td>{{ u.isActive ? 'Yes' : 'No' }}</td>
+                  <td><button class="btn btn-sm btn-outline-primary" (click)="startEdit(u)">Edit</button></td>
+                }
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </div>
+</div>

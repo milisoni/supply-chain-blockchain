@@ -1,0 +1,47 @@
+# Environment and build artifacts
+node_modules/
+dist/
+bin/
+obj/
+.DS_Store
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE and editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.env
+.env.local
+
+# Backend secrets - DO NOT COMMIT
+appsettings.Development.json
+appsettings.*.json
+!appsettings.json
+
+# Blockchain
+.env.ganache
+mnemonic.txt
+
+# Frontend build
+/frontend/dist/
+/frontend/.angular/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Don't commit private keys or sensitive data
+*.pem
+*.key
+*secret*
+*private*

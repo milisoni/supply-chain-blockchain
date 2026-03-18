@@ -1,0 +1,83 @@
+<h1 class="page-title">Payments</h1>
+<p class="text-muted mb-4">Fund escrow for a shipment or release payment to supplier after delivery. Release only works when shipment status is Delivered on blockchain.</p>
+
+<div class="row">
+  <div class="col-lg-5 mb-4">
+    <div class="card h-100">
+      <div class="card-header">Fund agreement (escrow)</div>
+      <div class="card-body">
+        @if (error) { <div class="alert alert-danger">{{ error }}</div> }
+        @if (success) { <div class="alert alert-success">{{ success }}</div> }
+        <div class="mb-3">
+          <label class="form-label">Blockchain Shipment ID</label>
+          <input type="text" class="form-control" [(ngModel)]="fundShipmentId" name="fundShipmentId" placeholder="0x...">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Supplier User ID (Mongo ID)</label>
+          <input type="text" class="form-control" [(ngModel)]="fundSupplierUserId" name="fundSupplierUserId">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Amount (Wei)</label>
+          <input type="text" class="form-control" [(ngModel)]="fundAmountWei" name="fundAmountWei" placeholder="e.g. 1000000000000000000">
+        </div>
+        <button class="btn btn-primary" (click)="fund()" [disabled]="loadingAction">Fund</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-5 mb-4">
+    <div class="card h-100">
+      <div class="card-header">Release payment</div>
+      <div class="card-body">
+        <div class="mb-3">
+          <label class="form-label">Blockchain Agreement ID</label>
+          <input type="text" class="form-control" [(ngModel)]="releaseAgreementId" name="releaseAgreementId" placeholder="0x...">
+        </div>
+        <button class="btn btn-success" (click)="release()" [disabled]="loadingAction">Confirm delivery & release</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">My payment agreements</div>
+  <div class="card-body">
+    @if (loading) {
+      <p class="text-muted">Loading...</p>
+    } @else if (list.length === 0) {
+      <p class="text-muted">No payment agreements.</p>
+    } @else {
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr><th>Agreement ID</th><th>Shipment ID</th><th>Amount (Wei)</th><th>Status</th><th>Created</th></tr>
+          </thead>
+          <tbody>
+            @for (p of list; track p.id) {
+              <tr>
+                <td>
+                  <div class="id-cell">
+                    <code class="id-text" [title]="p.blockchainAgreementId">{{ p.blockchainAgreementId }}</code>
+                    <button class="btn-copy" (click)="copy(p.blockchainAgreementId)">
+                      {{ copiedId === p.blockchainAgreementId ? '✓ Copied' : 'Copy' }}
+                    </button>
+                  </div>
+                </td>
+                <td>
+                  <div class="id-cell">
+                    <code class="id-text" [title]="p.blockchainShipmentId">{{ p.blockchainShipmentId }}</code>
+                    <button class="btn-copy" (click)="copy(p.blockchainShipmentId)">
+                      {{ copiedId === p.blockchainShipmentId ? '✓ Copied' : 'Copy' }}
+                    </button>
+                  </div>
+                </td>
+                <td>{{ p.amountWei }}</td>
+                <td><span class="badge" [ngClass]="statusClass(p.status)">{{ p.status }}</span></td>
+                <td>{{ p.createdAt | date:'short' }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </div>
+</div>

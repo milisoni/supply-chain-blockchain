@@ -1,0 +1,29 @@
+<h1 class="page-title">Transaction history</h1>
+<p class="text-muted mb-4">Blockchain transaction history. Admin sees all; others see their own.</p>
+<div class="card">
+  <div class="card-body">
+    @if (loading) {
+      <p class="text-muted">Loading...</p>
+    } @else if (list.length === 0) {
+      <p class="text-muted">No transactions.</p>
+    } @else {
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr><th>Type</th><th>Transaction hash</th><th>Details</th><th>Date</th></tr>
+          </thead>
+          <tbody>
+            @for (t of list; track t.id) {
+              <tr>
+                <td><span class="badge" [ngClass]="typeClass(t.type)">{{ t.type }}</span></td>
+                <td><code class="small">{{ t.transactionHash.slice(0, 20) }}...</code></td>
+                <td>{{ t.details }}</td>
+                <td>{{ t.createdAt | date:'short' }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </div>
+</div>

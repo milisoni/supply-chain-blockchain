@@ -1,0 +1,21 @@
+<h1 class="page-title">Profile</h1>
+@if (loading) {
+  <p class="text-muted">Loading...</p>
+} @else if (user) {
+  <div class="card col-lg-6">
+    <div class="card-body">
+      @if (error) { <div class="alert alert-danger">{{ error }}</div> }
+      @if (success) { <div class="alert alert-success">{{ success }}</div> }
+      <p class="text-muted">Email: {{ user.email }} · Role: {{ user.role }}</p>
+      <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" [(ngModel)]="name" name="name">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Blockchain address (for receiving payments)</label>
+        <input type="text" class="form-control" [(ngModel)]="blockchainAddress" name="blockchainAddress" placeholder="0x...">
+      </div>
+      <button class="btn btn-primary" (click)="save()" [disabled]="saving">Save</button>
+    </div>
+  </div>
+}

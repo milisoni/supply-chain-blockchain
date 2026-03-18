@@ -1,0 +1,30 @@
+<h1 class="page-title">Add Shipment</h1>
+<div class="card col-lg-6">
+  <div class="card-body">
+    <p class="text-muted small">Creates a shipment record on the Ethereum blockchain. Transaction hash will be stored.</p>
+    @if (error) {
+      <div class="alert alert-danger">{{ error }}</div>
+    }
+    <form (ngSubmit)="submit()">
+      <div class="mb-3">
+        <label class="form-label">Product ID</label>
+        <input type="text" class="form-control" [(ngModel)]="productId" name="productId" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Quantity</label>
+        <input type="number" class="form-control" [(ngModel)]="quantity" name="quantity" min="1" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Destination</label>
+        <input type="text" class="form-control" [(ngModel)]="destination" name="destination" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Transaction ref (optional)</label>
+        <input type="text" class="form-control" [(ngModel)]="transactionRef" name="transactionRef">
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="loading">
+        {{ loading ? 'Creating on blockchain...' : 'Create Shipment' }}
+      </button>
+    </form>
+  </div>
+</div>

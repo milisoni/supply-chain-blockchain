@@ -1,0 +1,167 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+:root {
+  /* Primary brand palette */
+  --sc-primary: #0d6efd;           /* bright blue */
+  --sc-primary-soft: #377dff1a;    /* soft blue tint */
+  --sc-accent: #2dd4bf;            /* teal accent for statuses/highlights */
+
+  /* Backgrounds & surfaces */
+  --sc-bg: #050816;
+  --sc-bg-elevated: #0b1020;
+  --sc-card: #141827;
+  --sc-border: #252b3d;
+
+  /* Text */
+  --sc-text: #e4e6f0;
+  --sc-text-muted: #9ca3af;
+  --sc-text-soft: #cbd5e1;
+  --sc-label: #dbe7ff;
+
+  /* Semantic */
+  --sc-success: #22c55e;
+  --sc-warning: #facc15;
+  --sc-danger: #ef4444;
+}
+
+body {
+  background:
+    radial-gradient(circle at 0% 0%, #1d4ed826 0, transparent 45%),
+    radial-gradient(circle at 100% 100%, #2dd4bf21 0, transparent 50%),
+    linear-gradient(135deg, #020617 0%, #020617 40%, #020617 100%);
+  min-height: 100vh;
+  color: var(--sc-text);
+  font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.45;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--sc-text);
+}
+
+p, small, .text-muted {
+  color: var(--sc-text-soft) !important;
+}
+
+.card {
+  background: radial-gradient(circle at top left, #1f2937 0, var(--sc-card) 55%);
+  border: 1px solid var(--sc-border);
+  border-radius: 14px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+  box-shadow:
+    0 18px 45px rgba(15, 23, 42, 0.85),
+    0 0 0 1px rgba(15, 23, 42, 0.8);
+}
+
+.card:hover {
+  border-color: #334155;
+  transform: translateY(-1px);
+}
+
+.form-control,
+.form-select {
+  background: #111827;
+  border-color: var(--sc-border);
+  color: var(--sc-text);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  background: #020617;
+  border-color: var(--sc-primary);
+  color: var(--sc-text);
+  box-shadow: 0 0 0 0.18rem var(--sc-primary-soft);
+}
+
+.form-control::placeholder {
+  color: var(--sc-text-muted);
+}
+
+label,
+.form-label,
+.form-check-label,
+legend {
+  color: var(--sc-label) !important;
+  font-weight: 500;
+}
+
+.form-check-input {
+  background-color: #0f172a;
+  border-color: #475569;
+}
+
+.form-check-input:checked {
+  background-color: var(--sc-primary);
+  border-color: var(--sc-primary);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--sc-primary), #2563eb);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.45);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  border-color: transparent;
+}
+
+.btn {
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.container,
+.container-fluid {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.table {
+  color: var(--sc-text);
+}
+
+.table thead th {
+  border-color: var(--sc-border);
+  color: var(--sc-text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.75rem;
+}
+
+.table tbody td {
+  border-color: var(--sc-border);
+}
+
+.badge {
+  font-weight: 500;
+  border-radius: 999px;
+  padding-inline: 0.6rem;
+  padding-block: 0.3rem;
+}
+
+.navbar {
+  background: linear-gradient(90deg, #020617f2, #020617e6) !important;
+  border-bottom: 1px solid var(--sc-border);
+  backdrop-filter: blur(18px);
+}
+
+.nav-link {
+  color: var(--sc-text-muted) !important;
+  font-weight: 500;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--sc-text) !important;
+}
+
+.page-title {
+  font-weight: 650;
+  color: var(--sc-text);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.02em;
+}
