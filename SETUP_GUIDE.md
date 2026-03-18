@@ -127,8 +127,8 @@ mongo --eval "db.adminCommand('ping')"
 **Option B: MongoDB Atlas (Cloud)**
 1. Create free account at https://www.mongodb.com/cloud/atlas
 2. Create cluster (free tier)
-3. Get connection string: `mongodb+srv://username:password@cluster.mongodb.net/`
-4. Add username/password in connection string
+3. Get connection string: `mongodb+srv://<username>:<password>@cluster.mongodb.net/`
+4. Replace `<username>` and `<password>` with your actual Atlas credentials
 5. Replace `ConnectionString` in `appsettings.Development.json`
 
 #### 3.3.3 Restore Backend Dependencies
